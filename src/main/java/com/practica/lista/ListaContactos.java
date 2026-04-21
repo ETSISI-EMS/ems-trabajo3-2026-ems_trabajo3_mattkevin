@@ -145,30 +145,17 @@ public class ListaContactos {
 	 * nuestra lista funciona de manera correcta.
 	 */
 	public int numPersonasEntreDosInstantes(FechaHora inicio, FechaHora fin) {
-		if(this.size==0)
-			return 0;
-		NodoTemporal aux = lista;
-		int cont = 0;
-		int a;
-		cont = 0;
-		while(aux!=null) {
-			if(aux.getFecha().compareTo(inicio)>=0 && aux.getFecha().compareTo(fin)<=0) {
-				NodoPosicion nodo = aux.getListaCoordenadas();
-				while(nodo!=null) {
-					cont = cont + nodo.getNumPersonas();
-					nodo = nodo.getSiguiente();
-				}				
-				aux = aux.getSiguiente();
-			}else {
-				aux=aux.getSiguiente();
-			}
-		}
-		return cont;
+		return numElementosEntreDosInstantes(inicio,fin, false);
 	}
 	
 	
 	
 	public int numNodosCoordenadaEntreDosInstantes(FechaHora inicio, FechaHora fin) {
+		return numElementosEntreDosInstantes(inicio,fin,true);
+	}
+
+
+	public int numElementosEntreDosInstantes(FechaHora inicio, FechaHora fin, boolean cambio) {
 		if(this.size==0)
 			return 0;
 		NodoTemporal aux = lista;
@@ -179,18 +166,20 @@ public class ListaContactos {
 			if(aux.getFecha().compareTo(inicio)>=0 && aux.getFecha().compareTo(fin)<=0) {
 				NodoPosicion nodo = aux.getListaCoordenadas();
 				while(nodo!=null) {
-					cont = cont + 1;
+					if (cambio) {
+						cont = cont + 1;
+					}else {
+						cont = cont + nodo.getNumPersonas();
+					}
 					nodo = nodo.getSiguiente();
-				}				
+				}
 				aux = aux.getSiguiente();
 			}else {
-				aux=aux.getSiguiente();
+				aux= aux.getSiguiente();
 			}
 		}
 		return cont;
 	}
-	
-	
 	
 	@Override
 	public String toString() {
