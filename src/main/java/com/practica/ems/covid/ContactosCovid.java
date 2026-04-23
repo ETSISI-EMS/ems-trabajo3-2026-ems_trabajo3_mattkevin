@@ -89,23 +89,17 @@ public class ContactosCovid {
 		}
 	}
 
-	public void loadDataFile(String fichero, boolean reset) {
-		File archivo = null;
-		FileReader fr = null;
-		BufferedReader br = null;
-		String datas[] = null, data = null;
-		loadDataFile(fichero, reset, archivo, fr, br, datas, data);
-		
-	}
-
 	@SuppressWarnings("resource")
-	public void loadDataFile(String fichero, boolean reset, File archivo, FileReader fr, BufferedReader br, String datas[], String data ) {
+	public void loadDataFile(String fichero, boolean reset) {
+		FileReader fr = null;
 		try {
 			// Apertura del fichero y creacion de BufferedReader para poder
 			// hacer una lectura comoda (disponer del metodo readLine()).
-			archivo = new File(fichero);
+			String data="";
+			StringBuilder contenido = new StringBuilder();
+			File archivo = new File(fichero);
 			fr = new FileReader(archivo);
-			br = new BufferedReader(fr);
+			BufferedReader br = new BufferedReader(fr);
 			if (reset) {
 				this.poblacion = new Poblacion();
 				this.localizacion = new Localizacion();
@@ -117,8 +111,9 @@ public class ContactosCovid {
 			 * lista correspondiente. Sino viene ninguno de esos tipos lanzo una excepción
 			 */
 			while ((data = br.readLine()) != null) {
-				loadData(data,reset);
+				contenido.append(data).append("\n");
 			}
+			loadData(contenido.toString(),reset);
 
 		} catch (Exception e) {
 			e.printStackTrace();
