@@ -1,7 +1,6 @@
 package com.practica.lista;
 
 import com.practica.genericas.FechaHora;
-import com.practica.genericas.Persona;
 import com.practica.genericas.PosicionPersona;
 
 public class ListaContactos {
