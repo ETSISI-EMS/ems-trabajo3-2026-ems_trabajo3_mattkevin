@@ -1,6 +1,5 @@
 package com.practica.lista;
 
-import com.practica.genericas.Coordenada;
 import com.practica.genericas.FechaHora;
 import com.practica.genericas.PosicionPersona;
 
@@ -90,7 +89,7 @@ public class ListaContactos {
 		}
 	}
 	
-	private boolean buscarPersona (String documento, NodoPersonas nodo) {
+	/*private boolean buscarPersona (String documento, NodoPersonas nodo) {
 		NodoPersonas aux = nodo;
 		while(aux!=null) {
 			if(aux.getDocumento().equals(documento)) {
@@ -100,15 +99,15 @@ public class ListaContactos {
 			}
 		}
 		return false;
-	}
+	}*/
 	
-	private void insertarPersona (String documento, NodoPersonas nodo) {
+	/*private void insertarPersona (String documento, NodoPersonas nodo) {
 		NodoPersonas aux = nodo, nuevo = new NodoPersonas(documento, null);
 		while(aux.getSiguiente()!=null) {				
 			aux = aux.getSiguiente();				
 		}
 		aux.setSiguiente(nuevo);		
-	}
+	}*/
 	
 	public int personasEnCoordenadas () {
 		NodoPosicion aux = this.lista.getListaCoordenadas();
@@ -178,7 +177,7 @@ public class ListaContactos {
 	@Override
 	public String toString() {
 		String cadena="";
-		int a,cont;
+		int cont;
 		cont=0;
 		NodoTemporal aux = lista;
 		for(cont=1; cont<size; cont++) {
